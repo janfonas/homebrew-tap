@@ -1,19 +1,32 @@
-# mectl Homebrew Tap
+# mectl Homebrew Tap Migration
 
-Homebrew packaging for [mectl releases](https://github.com/janfonas/mectl-releases).
+The mectl formula has moved to the company-owned
+[Norsk-Tipping tap](https://github.com/Norsk-Tipping/homebrew-tap).
+This repository remains available with Homebrew migration metadata for existing installs.
+Versioned binaries remain in [mectl releases](https://github.com/janfonas/mectl-releases).
 Supported: Apple Silicon and Intel macOS, and Linux x86-64.
 
 ```sh
-brew install janfonas/tap/mectl
+brew install norsk-tipping/tap/mectl
 mectl version
 ```
 
-## Updates
+## Existing Installations
+
+Add the company tap before updating so Homebrew can migrate installed-package receipts:
 
 ```sh
+brew tap norsk-tipping/tap
 brew update
 brew upgrade mectl
 ```
+
+If Homebrew already skipped the migration or requests manual migration, run
+`brew reinstall norsk-tipping/tap/mectl`. No application configuration needs to move.
+After migration, normal updates remain `brew update` followed by `brew upgrade mectl`.
+
+If Homebrew requests trust, run `brew trust --formula norsk-tipping/tap/mectl` and
+retry; this trusts only mectl, not the entire company tap.
 
 The formula downloads versioned binary archives and verifies their SHA-256 checksums.
 The application source remains private. Using mectl requires company network access and
